@@ -1,0 +1,114 @@
+-- Aimbot
+local aimbotEnabled = false
+
+-- ESP
+local espEnabled = false
+
+-- Coin generation
+local coinMultiplier = 10 -- Number of coins generated per input
+local coinInput = Instance.new("TextBox")
+coinInput.Parent = game.CoreGui
+coinInput.Position = UDim2.new(0.5, -100, 0.85, -25)
+coinInput.Size = UDim2.new(0, 200, 0, 50)
+coinInput.PlaceholderText = "Enter Number of Coins"
+
+local coinButton = Instance.new("TextButton")
+coinButton.Parent = game.CoreGui
+coinButton.Position = UDim2.new(0.5, -50, 0.9, -25)
+coinButton.Size = UDim2.new(0, 100, 0, 50)
+coinButton.Text = "Generate Coins"
+coinButton.MouseButton1Click:Connect(function()
+    local coinsToAdd = tonumber(coinInput.Text)
+    if coinsToAdd then
+        game.Players.LocalPlayer.leaderstats.Coins.Value = game.Players.LocalPlayer.leaderstats.Coins.Value + coinsToAdd * coinMultiplier
+    end
+end)
+
+-- God mode
+local godModeEnabled = false
+
+-- Delta/Mobile switch
+local deltaMobileSwitch = Instance.new("TextButton")
+deltaMobileSwitch.Parent = game.CoreGui
+deltaMobileSwitch.Position = UDim2.new(0.9, -100, 0.05, 0)
+deltaMobileSwitch.Size = UDim2.new(0, 200, 0, 50)
+deltaMobileSwitch.Text = "Delta/Mobile"
+deltaMobileSwitch.MouseButton1Click:Connect(function()
+    -- Toggle between Delta and Mobile settings
+end)
+
+-- Mini Screen
+local miniScreen = Instance.new("ScreenGui")
+miniScreen.Parent = game.CoreGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 180)
+frame.Position = UDim2.new(0.5, -100, 0.1, 0)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.Parent = miniScreen
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 20)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.Text = "Cheats"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 18
+title.BackgroundTransparency = 1
+title.Parent = frame
+
+local aimbotLabel = Instance.new("TextButton")
+aimbotLabel.Size = UDim2.new(1, 0, 0, 20)
+aimbotLabel.Position = UDim2.new(0, 0, 0.1, 0)
+aimbotLabel.Text = "Aimbot: OFF"
+aimbotLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+aimbotLabel.TextSize = 14
+aimbotLabel.BackgroundTransparency = 1
+aimbotLabel.Parent = frame
+aimbotLabel.MouseButton1Click:Connect(function()
+    aimbotEnabled = not aimbotEnabled
+    aimbotLabel.Text = "Aimbot: " .. (aimbotEnabled and "ON" or "OFF")
+end)
+
+local espLabel = Instance.new("TextButton")
+espLabel.Size = UDim2.new(1, 0, 0, 20)
+espLabel.Position = UDim2.new(0, 0, 0.3, 0)
+espLabel.Text = "ESP: OFF"
+espLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+espLabel.TextSize = 14
+espLabel.BackgroundTransparency = 1
+espLabel.Parent = frame
+espLabel.MouseButton1Click:Connect(function()
+    espEnabled = not espEnabled
+    espLabel.Text = "ESP: " .. (espEnabled and "ON" or "OFF")
+end)
+
+local godModeLabel = Instance.new("TextButton")
+godModeLabel.Size = UDim2.new(1, 0, 0, 20)
+godModeLabel.Position = UDim2.new(0, 0, 0.5, 0)
+godModeLabel.Text = "God Mode: OFF"
+godModeLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+godModeLabel.TextSize = 14
+godModeLabel.BackgroundTransparency = 1
+godModeLabel.Parent = frame
+godModeLabel.MouseButton1Click:Connect(function()
+    godModeEnabled = not godModeEnabled
+    godModeLabel.Text = "God Mode: " .. (godModeEnabled and "ON" or "OFF")
+end)
+
+-- Update loop
+game:GetService("RunService").Heartbeat:Connect(function()
+    -- Aimbot logic
+    if aimbotEnabled then
+        -- Implement aimbot logic here
+    end
+
+    -- ESP logic
+    if espEnabled then
+        -- Implement ESP logic here
+    end
+
+    -- God mode logic
+    if godModeEnabled then
+        -- Implement god mode logic here
+    end
+end)
